@@ -23,7 +23,7 @@ const options = {
   },
 };
 
-fetch(url, options)
+fetch(url, options) 
   .then(r => r.json())
   .then(console.log);
 

@@ -27,6 +27,13 @@ fetch(url, options)
   .then(r => r.json())
   .then(console.log);
 
+
+
+  fetch(
+  'https://lpj-weather-service.herokuapp.com/weather?lat=39.916668&lon=116.383331',
+)
+  .then(r => r.json())
+  .then(console.log);
  // =========================================
 
 // const PASTE_YOUR_API_KEY_HERE = 'd80d26f396a09dee964f29c0205bdd02' 

@@ -16,7 +16,7 @@ fetch(
  
  // =========================================
 
-const url = 'https://newsapi.org/v2/everything?q=python';
+const url = 'https://newsapi.org/v2/everything?q=python&language=ru';
 const options = {
   headers: {
     Authorization: '4330ebfabc654a6992c2aa792f3173a3',
@@ -29,11 +29,11 @@ fetch(url, options)
 
 
 
-  fetch(
-  'https://lpj-weather-service.herokuapp.com/weather?lat=39.916668&lon=116.383331',
-)
-  .then(r => r.json())
-  .then(console.log);
+//   fetch(
+//   'https://lpj-weather-service.herokuapp.com/weather?lat=39.916668&lon=116.383331',
+// )
+//   .then(r => r.json())
+//   .then(console.log);
  // =========================================
 
 // const PASTE_YOUR_API_KEY_HERE = 'd80d26f396a09dee964f29c0205bdd02' 

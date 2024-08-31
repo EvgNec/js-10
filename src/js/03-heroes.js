@@ -1,7 +1,8 @@
 //FhvidwmjPOio6g4MlGnZ
 const refs = {
     BASE_URL: 'https://the-one-api.dev/v2',
-    ENDPOINT:'/character',
+    ENDPOINT: '/character',
+    KEY: 'FhvidwmjPOio6g4MlGnZ',
 }
 const options = {
   headers: {
@@ -9,21 +10,29 @@ const options = {
   },
 };
 
-fetch('https://the-one-api.dev/v2/character', options)
-    .then(resp2 => 
+const option = {
+  headers: {
+    Authorization: `Bearer ${refs.KEY}`,
+  },
+};
 
-        console.log("resp2", resp2.json())
-    )
+// fetch('https://the-one-api.dev/v2/character', options)
+//     .then(resp2 => 
+
+//         console.log("resp2", resp2.json())
+// )
+    
 
 function getCharacter() {
-    const option = URLSearchParams({
+
+    const param = new URLSearchParams({
         limit: 30,
         page: 1,
     });
-    fetch(`${refs.BASE_URL}${refs.ENDPOINT}?${option}`)
-    .then( resp => 
-        console.log("resp", resp)
+    fetch(`${refs.BASE_URL}${refs.ENDPOINT}?${param}`, option)
+    .then( resp =>        
+        console.log("resp", resp.json())
     )
 }
-
+getCharacter();
 

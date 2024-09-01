@@ -13,9 +13,12 @@ refs.btnLoadMore.addEventListener('click', onLoad);
 function onLoad() {
   refs.currentPage++;
   getTrandig(refs.currentPage)
-    .then(data =>
-      refs.list.insertAdjacentHTML('beforeend', createMarkup(data.results))
-    )
+    .then(data => {
+      refs.list.insertAdjacentHTML('beforeend', createMarkup(data.results));
+      if (data.page === data.total_results) {
+        refs.btnLoadMore.hidden = true;
+      }
+    })
     .catch(err => console.assert(err));
 }
 
@@ -48,20 +51,22 @@ function getTrandig(page = 1) {
   });
 }
 getTrandig()
-    .then(data =>
-       { refs.list.insertAdjacentHTML('beforeend', createMarkup(data.results));
-      if (data.page != data.total_pages) {
-          refs.btnLoadMore.hidden = false;}})
+  .then(data => {
+    refs.list.insertAdjacentHTML('beforeend', createMarkup(data.results));
+    if (data.page != data.total_pages) {
+      refs.btnLoadMore.hidden = false;
+    }
+  })
   .catch(err => console.assert(err));
 
 function createMarkup(arr) {
   return arr
     .map(
       ({ poster_path, title, overview }) =>
-        `<li>
-        <img src="${refs.IMGURL}${poster_path}" alt="${title}">
+        `<li class="card">
+        <img src="${refs.IMGURL}${poster_path}" alt="${title} class="img">
         <h2>${title}</h2>
-        <p>${overview}</p>
+        <p class="overview">${overview}</p>
             </li>`
     )
     .join('');

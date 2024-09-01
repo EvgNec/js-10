@@ -9,13 +9,13 @@ target: document.querySelector('.js-guard'),
 counter: 0,
 };
 
-function onLoad() {
+function onLoad(observer) {
   refs.currentPage++;
   getTrandig(refs.currentPage)
     .then(data => {
       refs.list.insertAdjacentHTML('beforeend', createMarkup(data.results));
-      if (data.page === data.total_results) {
-        refs.btnLoadMore.hidden = true;
+      if (data.page === data.total_pages) {
+          observer.unobserver(target);
       }
     })
     .catch(err => console.assert(err));
@@ -47,9 +47,8 @@ function callback(entries, observer) {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
             console.log("e2", entry.isIntersecting)
-            onLoad();
+            onLoad(observer);
         }
-
 })
 }
 

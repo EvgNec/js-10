@@ -11,6 +11,8 @@ const options = {
 };
 
 const option = {
+    method: 'GET',
+    
   headers: {
     Authorization: `Bearer ${refs.KEY}`,
   },

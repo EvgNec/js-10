@@ -26,10 +26,13 @@ function getTrandig() {
     //     limit: 30,
     //     page: 1,
     // });
-    // fetch(`${refs.BASE_URL}${refs.ENDPOINT}?${param}`, option)
-            fetch(`${refs.BASE_URL}${refs.ENDPOINT}`, option)
-    .then( resp =>        
-        console.log("resp", resp.json())
+ return    fetch(`${refs.BASE_URL}${refs.ENDPOINT}?api_key=${refs.KEY}`)
+        .then(resp => {
+            if (!resp.ok) {
+                throw new Error(resp.statusText);
+            }
+            return resp.json();
+        }
     )
 }
-getTrandig();
+getTrandig().then(data => console.log(data)).catch(err => console.assert(err));

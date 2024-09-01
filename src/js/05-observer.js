@@ -43,10 +43,14 @@ let options2 = {
 const target = document.querySelector('.js-guard');
 let observer = new IntersectionObserver(callback, options2);
 
-function callback(e) {
-    if (e.isintersecting){
-    console.log("e", e)
-}
+function callback(entries, observer) {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            console.log("e2", entry.isIntersecting)
+            onLoad();
+        }
+
+})
 }
 
 

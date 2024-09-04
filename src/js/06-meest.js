@@ -14,7 +14,10 @@ const options = {
   },
 };
 console.log("options", options)
-fetch(
+fetch('https://api.meest.com/v3.0/openAPI/', options).then(resp => {
+ console.log("resp.json()", resp.json())
+});
+    
 
 
 // function getTrandig() {

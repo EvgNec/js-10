@@ -1,0 +1,7 @@
+.js-weather-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    align-items: center;
+    list-style: none;
+}

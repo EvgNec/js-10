@@ -26,3 +26,11 @@
   background-size: cover;
   background-position: center;
 }
+
+.js-weather-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 280px;
+}

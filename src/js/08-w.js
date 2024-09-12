@@ -6,17 +6,16 @@ const refs = {
   ENDPOINT: '/forecast.json',
     KEY: '4a0f16517e4d46ca8cd192223241209',
   form: document.querySelector('.js-search-form'),
-//   btnSearch: document.querySelector('.js-btn-search'),
+  list: document.querySelector('.js-weather-container'),
 };
 const options = {};
 
 refs.form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const form = e.currentTarget
-   let  query = +form['query'].value 
-    console.log(query);
-    const days = +form['days'].value 
-    console.log("days", days)
+    const {query, days} = e.currentTarget.elements
+    getWeather(query.value, days.value)
+        .then((date) => refs.list.innerHTML=createMarkup(date.forecast.forecastday))
+        .catch((err) => console.log(err));
 })
 
 function getWeather(city, days) {
@@ -34,5 +33,13 @@ function getWeather(city, days) {
   );
 }
 
-getWeather('Leiria', 5).then(date => console.log(date)).catch(err => console.log(err));
-// getWeather('Lisboa', 5);
+function createMarkup(arr) {
+    return arr.map(({date, day: {avgtemp_c, condition:{icon, text}}}) =>
+       `<li>
+        <img src="${icon}" alt="${text}">
+        <p>${text}</p>
+        <h2>${date}</h2>
+        <h3>${avgtemp_c}</h3>
+    </li>`
+   ).join(''); 
+}

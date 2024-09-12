@@ -11,13 +11,25 @@
 <body>
     <p><a href="index.html">На главную</a></p>
 
-    <form class="js-search-form">
+    <form action="submit" class="js-search-form">
+        <input type="text" class="1" name="query" />
+        <select name="days">
+            <option value="3">3</option>
+            <option value="5">5</option>
+            <option value="7">7</option>
+            <option value="7">14</option>
+        </select>
+        <button type="submit" class="js-btn-search">Search</button>
+    </form>
+
+
+    <!-- <form class="js-search-form">
         <div class="form-group">
             <input type="text" class="form-control" name="query" />
         </div>
 
         <button type="submit" class="btn">Искать</button>
-    </form>
+    </form> -->
     <script src="js/08-w.js" type="module"></script>
 </body>
 

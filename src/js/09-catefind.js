@@ -1,8 +1,7 @@
 const refs = {
-  BASE_URL: 'https://api.meest.com/v3.0/openAPI',
-  ENDPOINT: '/auth',
-  username: 'nowystyl_com_ua',
-  password: ')FB1WM)G1uFv',
+  BASE_URL: 'https://api.thecatapi.com/v1',
+  ENDPOINT: '/breeds',
+  KEY: 'live_6mSRucqNyrSNqpDecLOPuWFbMXAyH4nVJnDAVE1MvYAWkJLHdyznA0qqn2NkF7EW',
 // target: document.querySelector('.js-guard'),
 };
 

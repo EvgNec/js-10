@@ -6,14 +6,15 @@ const refs = {
 };
 
 
-const options = {
-  body: {
-    username: `${refs.username}`,
-    password: `${refs.password}`,
-  },
-};
-console.log("options", options)
-fetch('https://api.meest.com/v3.0/openAPI/', options).then(resp => {
- console.log("resp.json()", resp.json())
-});
+// const options = {
+//   body: {
+//     username: `${refs.username}`,
+//     password: `${refs.password}`,
+//   },
+// };
+// console.log("options", options)
+// fetch('https://api.meest.com/v3.0/openAPI/', options).then(resp => {
+//  console.log("resp.json()", resp.json())
+// });
+
    

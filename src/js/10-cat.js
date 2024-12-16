@@ -17,32 +17,22 @@ fetch(refs.URL,{headers: {
    return response.json();
  })
 .then((data) => {
-    let nameData = data.map(obj => obj.name);
+    let nameData = data.map(obj => {
+  return { id: obj.id, name: obj.name };
+});
     console.log(nameData);
 
 nameData.forEach(item => {
   const option = document.createElement("option"); // Створюємо елемент <option>
-  option.value = item; // Задаємо значення value
-  option.textContent = item; // Текст, який буде показаний користувачу
+  option.value = item.id; // Задаємо значення value
+  option.textContent = item.name; // Текст, який буде показаний користувачу
   dropdown.appendChild(option); // Додаємо <option> у <select>
 });
-
-
-  /*imagesData.map(function(imageData) {
-    
-    let image = document.createElement('img');
-    //use the url from the image object
-    image.src = `${imageData.url}`;
-        
-    let gridCell = document.createElement('div');
-    gridCell.classList.add('col');
-    gridCell.classList.add('col-lg');
-    gridCell.appendChild(image)
-      
-    document.getElementById('grid').appendChild(gridCell);
-    
-    });*/
 })
 .catch(function(error) {
    console.log(error);
 });
+
+dropdown.addEventListener("change", (event) => {
+  console.log(`Selected value: ${event.target.value}`);
+})

@@ -36,3 +36,46 @@ nameData.forEach(item => {
 dropdown.addEventListener("change", (event) => {
   console.log(`Selected value: ${event.target.value}`);
 })
+
+
+function(id) {
+ const url =   'https://newsapi.org/v2/everything?q=${this.searchQuery}&language=en&pageSize=10&page=${this.page}';
+ /*   
+fetch(refs.URL,{headers: {
+      'x-api-key': refs.KEY
+    }})
+ .then((response) => {
+   return response.json();
+ })
+.then((data) => {
+    let nameData = data.map(obj => {
+  return { id: obj.id, name: obj.name };
+});
+    console.log(nameData);
+
+nameData.forEach(item => {
+  const option = document.createElement("option"); // Створюємо елемент <option>
+  option.value = item.id; // Задаємо значення value
+  option.textContent = item.name; // Текст, який буде показаний користувачу
+  dropdown.appendChild(option); // Додаємо <option> у <select>
+});
+})
+.catch(function(error) {
+   console.log(error);*/
+};
+
+
+/*
+
+    let image = document.createElement('img');
+    //use the url from the image object
+    image.src = `${imageData.url}`;
+        
+    let gridCell = document.createElement('div');
+    gridCell.classList.add('col');
+    gridCell.classList.add('col-lg');
+    gridCell.appendChild(image)
+      
+    document.getElementById('grid').appendChild(gridCell);
+    
+    }

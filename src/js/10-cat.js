@@ -35,12 +35,21 @@ nameData.forEach(item => {
 
 dropdown.addEventListener("change", (event) => {
   console.log(`Selected value: ${event.target.value}`);
+  const id =`${event.target.value}`;
+  GetCat(id);
 })
 
 
-function(id) {
- const url =   'https://newsapi.org/v2/everything?q=${this.searchQuery}&language=en&pageSize=10&page=${this.page}';
- /*   
+const GetCat = function(id) {
+
+//  const url =   'https://newsapi.org/v2/everything?q=${this.searchQuery}&language=en&pageSize=10&page=${this.page}';
+const url =`${refs.BASE_URL}${refs.ENDPOINT}/${id}`
+
+
+console.log(url);
+
+
+/*   
 fetch(refs.URL,{headers: {
       'x-api-key': refs.KEY
     }})
@@ -78,4 +87,4 @@ nameData.forEach(item => {
       
     document.getElementById('grid').appendChild(gridCell);
     
-    }
+    }*/

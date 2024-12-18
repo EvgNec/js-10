@@ -48,7 +48,16 @@ const url =`${refs.BASE_URL}${refs.ENDPOINT}/${id}`
 
 console.log(url);
 
+function createUrl(baseUrl, params) {
+  let url = new URL(baseUrl);
+  let urlParams = new URLSearchParams(params);
+  url.search = urlParams.toString();
+  return url.toString();
+}
 
+let url2 = createUrl("https://example.com", { param1: "value1", param2: "value2" });
+
+console.log(url2);
 /*   
 fetch(refs.URL,{headers: {
       'x-api-key': refs.KEY

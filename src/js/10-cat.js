@@ -47,7 +47,7 @@ const url =`${refs.BASE_URL}${refs.ENDPOINT}/${id}`
 
 
 console.log(url);
-
+/*
 function createUrl(baseUrl, params) {
   let url = new URL(baseUrl);
   let urlParams = new URLSearchParams(params);
@@ -56,10 +56,10 @@ function createUrl(baseUrl, params) {
 }
 
 let url2 = createUrl("https://example.com", { param1: "value1", param2: "value2" });
-
-console.log(url2);
-/*   
-fetch(refs.URL,{headers: {
+console.log('url2');
+console.log(url2);*/
+  
+fetch(url,{headers: {
       'x-api-key': refs.KEY
     }})
  .then((response) => {
@@ -79,15 +79,15 @@ nameData.forEach(item => {
 });
 })
 .catch(function(error) {
-   console.log(error);*/
-};
+   console.log(error);
+// };
 
 
-/*
+
 
     let image = document.createElement('img');
     //use the url from the image object
-    image.src = `${imageData.url}`;
+    image.src = `${url}`;
         
     let gridCell = document.createElement('div');
     gridCell.classList.add('col');
@@ -96,4 +96,7 @@ nameData.forEach(item => {
       
     document.getElementById('grid').appendChild(gridCell);
     
-    }*/
+    }
+
+
+    // GetCat('acur');

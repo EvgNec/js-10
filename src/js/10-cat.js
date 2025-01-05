@@ -1,5 +1,6 @@
 const refs = {
   BASE_URL: 'https://api.thecatapi.com/v1',
+  IMG_URL: 'https://api.thecatapi.com/v1/images/search?',
   URL : `https://api.thecatapi.com/v1/breeds`,
   ENDPOINT: '/breeds',
   KEY: 'live_6mSRucqNyrSNqpDecLOPuWFbMXAyH4nVJnDAVE1MvYAWkJLHdyznA0qqn2NkF7EW',
@@ -7,6 +8,7 @@ const refs = {
   list: document.querySelector('.js-list'),
     btnLoadMore: document.querySelector('.js-load-more'),
   dropdown: document.getElementById("dropdown"),
+  grid: document.getElementById("grid"),
 };
 
 
@@ -41,62 +43,64 @@ dropdown.addEventListener("change", (event) => {
 
 
 const GetCat = function(id) {
+  const urlCat =`${refs.BASE_URL}${refs.ENDPOINT}/${id}`  
+  console.log(urlCat);
 
-//  const url =   'https://newsapi.org/v2/everything?q=${this.searchQuery}&language=en&pageSize=10&page=${this.page}';
-const url =`${refs.BASE_URL}${refs.ENDPOINT}/${id}`
-
-
-console.log(url);
-/*
-function createUrl(baseUrl, params) {
-  let url = new URL(baseUrl);
-  let urlParams = new URLSearchParams(params);
-  url.search = urlParams.toString();
-  return url.toString();
-}
-
-let url2 = createUrl("https://example.com", { param1: "value1", param2: "value2" });
-console.log('url2');
-console.log(url2);*/
-  
-fetch(url,{headers: {
-      'x-api-key': refs.KEY
-    }})
- .then((response) => {
-   return response.json();
- })
+  fetch(urlCat,{headers: {
+    'x-api-key': refs.KEY
+  }})
+.then((response) => {
+ return response.json();
+})
 .then((data) => {
-    let nameData = data.map(obj => {
-  return { id: obj.id, name: obj.name };
-});
-    console.log(nameData);
+  refs.grid.innerHTML = generateMarkup(data)
 
-nameData.forEach(item => {
-  const option = document.createElement("option"); // Створюємо елемент <option>
-  option.value = item.id; // Задаємо значення value
-  option.textContent = item.name; // Текст, який буде показаний користувачу
-  dropdown.appendChild(option); // Додаємо <option> у <select>
-});
+  console.log(data);
 })
 .catch(function(error) {
-   console.log(error);
-// };
+ console.log(error);
+});
+}
+
+function getImgCat(id){
+  const urlCatImg =`${refs.IMG_URL}breed_ids=${id}`  
+  fetch(urlCatImg,{headers: {
+    'x-api-key': refs.KEY
+  }})
+.then((response) => {
+ return response.json();
+})
+.then((data) => {
+  let imgData = data.map(obj => {
+return { id: obj.id, urlImg: obj.url };
+})})
+.catch(function(error) {
+ console.log(error);
+});
+}
+
+function generateMarkup(data) {
+ 
+  getImgCat(data.id);
+
+  let markup = '';
+
+    markup += `
+      <div class="item">
+        <h2>${data.name}</h2>
+        <p>${data.description}</p>
+      </div>
+    `;
+  
+
+  return markup;
+}
 
 
 
 
-    let image = document.createElement('img');
-    //use the url from the image object
-    image.src = `${url}`;
-        
-    let gridCell = document.createElement('div');
-    gridCell.classList.add('col');
-    gridCell.classList.add('col-lg');
-    gridCell.appendChild(image)
-      
-    document.getElementById('grid').appendChild(gridCell);
-    
-    }
 
 
-    // GetCat('acur');
+
+
+

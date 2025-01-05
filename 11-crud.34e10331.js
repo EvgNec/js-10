@@ -1,2 +1,0 @@
-fetch("https://jsonplaceholder.typicode.com/posts/1").then((function(t){return t.json()})).then((function(t){return console.log(t)})),fetch("https://jsonplaceholder.typicode.com/posts",{method:"POST",body:JSON.stringify({title:"foo",body:"bar",userId:1}),headers:{"Content-type":"application/json; charset=UTF-8"}}).then((function(t){return t.json()})).then((function(t){return console.log(t)}));
-//# sourceMappingURL=11-crud.34e10331.js.map

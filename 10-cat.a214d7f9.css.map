@@ -1,0 +1,1 @@
+{"mappings":"ACAA","sources":["10-cat.a214d7f9.css","src/10-style.css"],"sourcesContent":["img {\n  max-width: 40%;\n  height: auto;\n}\n\n/*# sourceMappingURL=10-cat.a214d7f9.css.map */\n","img {\n    max-width: 40%;\n    height: auto;      \n}"],"names":[],"version":3,"file":"10-cat.a214d7f9.css.map"}

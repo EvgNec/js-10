@@ -1,6 +1,6 @@
 <img src="${item.image}" alt="${item.name}" class="cat-image"/>
 
-
+<img src="${urlCat.url}" alt="${data.name}" class="cat-image"/>
 const GetCat = function(id) {
 
     //  const url =   'https://newsapi.org/v2/everything?q=${this.searchQuery}&language=en&pageSize=10&page=${this.page}';

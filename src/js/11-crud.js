@@ -66,13 +66,13 @@ function handlerAddPost() {
 }
 
 function handlerFormSubmit(evt) {
-  evt.preventDefault();
-  const { title, body } = evt.currentTarget.elements;
-  const data = {
-    title: title.value,
-    body: body.value,
-  };
-  console.log('🚀 ~ handlerFormSubmit ~ data:', data);
+    evt.preventDefault();
+    const { title, body } = evt.currentTarget.elements;
+    const data = {
+        title: title.value,
+        body: body.value,
+    };
+    console.log('🚀 ~ handlerFormSubmit ~ data:', data);
 
     addPostService(data).then(obj => {
         refs.listCat.insertAdjacentHTML('beforeend', createPostMarkup(obj))
@@ -80,7 +80,10 @@ function handlerFormSubmit(evt) {
         .catch(() => {
             refs.errorMessage.innerHTML = "Can't add posts";
         })
-        .finally(() => (refs.formWrapper.innerHTML = ""));
+        .finally(() => {
+            refs.formWrapper.innerHTML = ""
+            setTimeout(()=>{refs.errorMessage.innerHTML = ""},2000)
+});
 }
 
 function createPostMarkup({ id, title, body }) {
@@ -98,7 +101,7 @@ function addPostService(data) {
     },
     body: JSON.stringify(data),
   };
-    return fetch('https://1jsonplaceholder.typicode.com/posts', options)
+    return fetch('https://jsonplaceholder.typicode.com/posts', options)
         .then(response => {
             if (!response.ok) {
                 throw new Error(response.statusText);

@@ -78,9 +78,9 @@ function handlerFormSubmit(evt) {
         refs.listCat.insertAdjacentHTML('beforeend', createPostMarkup(obj))
     })
         .catch(() => {
-            errorMessage.innerHTML = "Can't add posts";
+            refs.errorMessage.innerHTML = "Can't add posts";
         })
-        .finally((e) = (refs.formWrapper.innerHTML = ""));
+        .finally(() => (refs.formWrapper.innerHTML = ""));
 }
 
 function createPostMarkup({ id, title, body }) {

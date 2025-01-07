@@ -47,7 +47,9 @@ fetch('https://jsonplaceholder.typicode.com/posts', options)
 const refs = {
   btnAddComment: document.querySelector('.js-add'),
   listCat: document.querySelector('.js-posts'),
-  formWrapper: document.querySelector('.js-form'),
+    formWrapper: document.querySelector('.js-form'),
+    errorMessage: document.querySelector('.js-error'),
+  
 };
 
 refs.btnAddComment.addEventListener('click', handlerAddPost);
@@ -72,9 +74,13 @@ function handlerFormSubmit(evt) {
   };
   console.log('🚀 ~ handlerFormSubmit ~ data:', data);
 
-  addPostService(data).then(obj => {
-     refs.listCat.insertAdjacentHTML('beforeend',createPostMarkup(obj))
-  });
+    addPostService(data).then(obj => {
+        refs.listCat.insertAdjacentHTML('beforeend', createPostMarkup(obj))
+    })
+        .catch(() => {
+            errorMessage.innerHTML = "Can't add posts";
+        })
+        .finally((e) = (refs.formWrapper.innerHTML = ""));
 }
 
 function createPostMarkup({ id, title, body }) {
@@ -92,7 +98,7 @@ function addPostService(data) {
     },
     body: JSON.stringify(data),
   };
-    return fetch('https://jsonplaceholder.typicode.com/posts', options)
+    return fetch('https://1jsonplaceholder.typicode.com/posts', options)
         .then(response => {
             if (!response.ok) {
                 throw new Error(response.statusText);

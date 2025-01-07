@@ -109,3 +109,24 @@ function addPostService(data) {
             return response.json();
         });
 }
+
+
+// U PUT PATCH
+
+const options2 = {
+  method: 'PUT',
+  body: JSON.stringify({
+    id: 1,
+    title: 'foo',
+    body: 'bar',
+    userId: 1,
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+}
+
+
+fetch('https://jsonplaceholder.typicode.com/posts/1', options2)
+  .then((response) => response.json())
+  .then((json) => console.log(json));

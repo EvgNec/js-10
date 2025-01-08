@@ -3,7 +3,16 @@
 //R - GET
 fetch('https://jsonplaceholder.typicode.com/posts/1')
   .then(response => response.json())
-  .then(json => console.log(json));
+    .then(json => {
+        console.log(json);
+        console.log('1');
+     });
+ 
+axios.get('https://jsonplaceholder.typicode.com/posts/1')
+.then(response => {console.log(response);  console.log('2');
+     });
+
+
 
 //C - POST
 
@@ -117,8 +126,7 @@ const options2 = {
   method: 'PUT',
   body: JSON.stringify({
     id: 1,
-    title: 'foo',
-    body: 'bar',
+    title: 'test put',
     userId: 1,
   }),
   headers: {
@@ -128,5 +136,42 @@ const options2 = {
 
 
 fetch('https://jsonplaceholder.typicode.com/posts/1', options2)
+  .then((response) => response.json())
+    .then((json) => console.log(json));
+
+const options3 = {
+  method: 'PATCH',
+  body: JSON.stringify({
+    id: 2,
+    title: 'test patch',
+    userId: 1,
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+}
+
+
+
+fetch('https://jsonplaceholder.typicode.com/posts/1', options3)
+  .then((response) => response.json())
+    .then((json) => console.log(json));
+
+
+// D DELETE
+    
+fetch('https://jsonplaceholder.typicode.com/posts/1', {
+  method: 'DELETE',
+});
+
+
+// This will return all the posts that belong to the first user
+fetch('https://jsonplaceholder.typicode.com/posts?userId=1')
+  .then((response) => response.json())
+  .then((json) => console.log(json));
+
+
+// This is equivalent to /comments?postId=1
+fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
   .then((response) => response.json())
   .then((json) => console.log(json));

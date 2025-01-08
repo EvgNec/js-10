@@ -27,3 +27,23 @@
 // getVapital2()
 //   .then(data => console.log(data))
 //   .catch(e => console.log(e));
+
+
+
+
+async function getVapital() {
+try {
+    const URL = 'https://restcountries.com/v3.1/name/';
+    const arr = ['Ukraine', 'France', 'Germany']
+    
+    const responses = arr.map(async (ctr) => {
+        const resp = await fetch(`${URL}${ctr}`)
+        return resp.json()
+    })
+    const prom = await Promise.allSettled(responses)
+      console.log("🚀 ~ getVapital ~ prom:", prom)
+      } catch (e) {
+    console.log('🚀 ~ getVapital ~ e:', e);
+  }
+}
+getVapital()

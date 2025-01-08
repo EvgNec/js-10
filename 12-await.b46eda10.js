@@ -1,0 +1,2 @@
+console.log("🚀 ~ getVapital():",async function(){try{const t="https://restcountries.com/v3.1/name/",o=await fetch(`${t}Ukraine`);if(!o.ok)throw new Error(o.statusText);return await o.json()}catch(t){console.log("🚀 ~ getVapital ~ e:",t)}}()),async function(){const t=await fetch("https://restcountries.com/v3.1/name/Ukraine");if(!t.ok)throw new Error(t.statusText);return t.json()}().then((t=>console.log(t))).catch((t=>console.log(t)));
+//# sourceMappingURL=12-await.b46eda10.js.map

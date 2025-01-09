@@ -28,32 +28,45 @@
 //   .then(data => console.log(data))
 //   .catch(e => console.log(e));
 
-async function getVapital() {
-//   try {
-    const URL = 'https://restcountries.com/v3.1/name/';
-    const arr = ['Ukraine', 'France1', 'Germany'];
+// async function getVapital() {
+// //   try {
+//     const URL = 'https://restcountries.com/v3.1/name/';
+//     const arr = ['Ukraine', 'France1', 'Germany'];
 
-    const responses = arr.map(async ctr => {
-        const resp = await fetch(`${URL}${ctr}`);
-       console.log("🚀 ~ responses ~ resp:", resp)     
-      if (!resp.ok) {
-    
-        throw new Error('Not found');
-        // Promise.reject('Not found');
-      }
-      return resp.json();
-    });
-      const prom = await Promise.allSettled(responses)
-      return prom;
-//   } catch (e) {
-//     console.log('🚀 ~ getVapital ~ e:', e);
-//   }
+//     const responses = arr.map(async ctr => {
+//         const resp = await fetch(`${URL}${ctr}`);
+//        console.log("🚀 ~ responses ~ resp:", resp)
+//       if (!resp.ok) {
+
+//         throw new Error('Not found');
+//         // Promise.reject('Not found');
+//       }
+//       return resp.json();
+//     });
+//       const prom = await Promise.allSettled(responses)
+//       return prom;
+// //   } catch (e) {
+// //     console.log('🚀 ~ getVapital ~ e:', e);
+// //   }
+// }
+// getVapital()
+//     .then(data => {
+//         const res = data.filter(({ status }) => status === 'fulfilled').map(({value}) => value[0]);
+//         const rej = data.filter(({ status }) => status === 'rejected');
+//         console.log(res);
+//          console.log(rej);
+//     })
+//   .catch(e => console.log(e));
+
+const refs = {
+  btnAddCountry: document.querySelector('.js-add'),
+  listCountry: document.querySelector('.js-list'),
+  formCountry: document.querySelector('.js-form'),
+};
+
+addCountry.addEventListener('click', handlerAddInput);
+
+function handlerAddInput() {
+    const markup = '<input type="text">'
+    refs.formCountry.insertAdjacentHTML('beforeend')
 }
-getVapital()
-    .then(data => {
-        const res = data.filter(({ status }) => status === 'fulfilled').map(({value}) => value[0]);
-        const rej = data.filter(({ status }) => status === 'rejected');
-        console.log(res);
-         console.log(rej);
-    })
-  .catch(e => console.log(e));

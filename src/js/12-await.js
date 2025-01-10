@@ -69,14 +69,63 @@ refs.btnAddCountry.addEventListener('click', handlerAddInput);
 
 function handlerAddInput() {
   const markup = '<input type="text" name="country">';
-  refs.formContainer.insertAdjacentHTML("beforeend",markup);
+  refs.formContainer.insertAdjacentHTML('beforeend', markup);
 }
 
 refs.formCountry.addEventListener('submit', handlerForm);
 
 function handlerForm(e) {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const arr = formData.getAll("country").filter(item => item);
+  e.preventDefault();
+  const formData = new FormData(e.currentTarget);
+  const arr = formData
+    .getAll('country')
+    .filter(item => item)
+    .map(item => item.trim());
+  getCountries(arr)
+    .then(resp => {
+      const capitals = resp.map(({capital}) => capital[0])
+              console.log("🚀 ~ handlerForm ~ capitals:", capitals)
+    })    
+  .catch(e => console.log(e))
 }
 
+async function getCountries(arr) {
+  const URL = 'https://restcountries.com/v3.1/name/';
+  const resps = arr.map(async item => {
+    const resp = await fetch(`${URL}${item}`);
+    if (!resp.ok) {
+      throw new Error('Not found');
+    }
+    return resp.json();
+  });
+  const data = await Promise.allSettled(resps)
+  const countryObj = data.filter(({status}) =>  status === 'fulfilled').map(({value}) => value[0])
+  return countryObj;
+}
+
+
+async function getWeather(arr) {
+  const BASE_URL = 'http://api.weatherapi.com/v1';
+  const KEY = '4a0f16517e4d46ca8cd192223241209';
+
+  const resps = arr.map(async city =>
+  {
+  const param = new URLSearchParams({
+    key: KEY,
+    q: city,
+    lang: 'uk',
+  });
+  const resp = await fetch(`${BASE_URL}/current.json?${param}`)
+      if (!resp.ok) {
+        throw new Error(resp.statusText);
+      }
+      return resp.json();
+  })
+
+  const data = await Promise.allSettled(resps)
+  const obj = data.filter(({status}) =>  status === 'fulfilled').map(({value}) => value[0])
+  console.log("🚀 ~ getWeather ~ obj:", obj)
+
+return obj
+
+}

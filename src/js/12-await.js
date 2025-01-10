@@ -62,11 +62,21 @@ const refs = {
   btnAddCountry: document.querySelector('.js-add'),
   listCountry: document.querySelector('.js-list'),
   formCountry: document.querySelector('.js-form'),
+  formContainer: document.querySelector('.js-form-container'),
 };
 
-addCountry.addEventListener('click', handlerAddInput);
+refs.btnAddCountry.addEventListener('click', handlerAddInput);
 
 function handlerAddInput() {
-    const markup = '<input type="text">'
-    refs.formCountry.insertAdjacentHTML('beforeend')
+  const markup = '<input type="text" name="country">';
+  refs.formContainer.insertAdjacentHTML("beforeend",markup);
 }
+
+refs.formCountry.addEventListener('submit', handlerForm);
+
+function handlerForm(e) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const arr = formData.getAll("country").filter(item => item);
+}
+

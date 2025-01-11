@@ -82,9 +82,10 @@ function handlerForm(e) {
     .filter(item => item)
     .map(item => item.trim());
   getCountries(arr)
-    .then(resp => {
+    .then(async resp => {
       const capitals = resp.map(({capital}) => capital[0])
-              console.log("🚀 ~ handlerForm ~ capitals:", capitals)
+      const weatherService = await getWeather(capitals)
+      console.log("🚀 ~ handlerForm ~ weatherService:", weatherService)
     })    
   .catch(e => console.log(e))
 }

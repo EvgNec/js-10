@@ -85,10 +85,14 @@ function handlerForm(e) {
     .then(async resp => {
       const capitals = resp.map(({capital}) => capital[0])
       const weatherService = await getWeather(capitals)
-      refs.listCountry.innerHTML = greateMarkup(weatherService)      
+      refs.listCountry.innerHTML = greateMarkup(weatherService) 
     })    
     .catch(e => console.log(e))
-  .finally(() => refs.formCountry.reset())
+    .finally(() => {
+      const markup = '<input type="text" name="country">';
+      refs.formContainer.innerHTML = markup;
+      refs.formCountry.reset()
+    })
 }
 
 async function getCountries(arr) {

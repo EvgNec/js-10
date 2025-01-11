@@ -85,9 +85,10 @@ function handlerForm(e) {
     .then(async resp => {
       const capitals = resp.map(({capital}) => capital[0])
       const weatherService = await getWeather(capitals)
-      console.log("🚀 ~ handlerForm ~ weatherService:", weatherService)
+      refs.listCountry.innerHTML = greateMarkup(weatherService)      
     })    
-  .catch(e => console.log(e))
+    .catch(e => console.log(e))
+  .finally(() => refs.formCountry.reset())
 }
 
 async function getCountries(arr) {
@@ -124,9 +125,21 @@ async function getWeather(arr) {
   })
 
   const data = await Promise.allSettled(resps)
-  const obj = data.filter(({status}) =>  status === 'fulfilled').map(({value}) => value[0])
+  const obj = data.filter(({ status }) => status === 'fulfilled').map(({ value }) =>  value )
+ 
   console.log("🚀 ~ getWeather ~ obj:", obj)
 
 return obj
+}
 
+function greateMarkup(arr) {
+  return arr.map(({ current: { temp_c, condition: { text, icon } }, location: {country, name} })=> `<li>
+    <div>
+        <h2>${country}</h2>
+        <h3>${name}</h3>
+        <img src="${icon}" alt="${text}">
+    </div>
+    <p>${text}</p>
+    <p>${temp_c}</p>
+</li>`).join('')
 }
